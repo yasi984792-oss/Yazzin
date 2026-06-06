@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNest - Top Tech Gear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #151c2c;
+            --accent-green: #2ecc71;
+            --accent-hover: #27ae60;
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+            --text-sale: #e74c3c;
+            --nav-bg: rgba(11, 15, 25, 0.9);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-light);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .nav-icons i {
+            transition: var(--transition);
+        }
+
+        .nav-icons i:hover {
+            color: var(--accent-green);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 0 80px;
+            background: radial-gradient(circle at 80% 20%, rgba(46, 204, 113, 0.15) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Floating Animation for Hero Images */
+        .hero-img {
+            max-height: 450px;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* --- TRUST BADGES --- */
+        .badges-section {
+            background-color: rgba(21, 28, 44, 0.5);
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        .badge-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .badge-item i {
+            color: var(--accent-green);
+            font-size: 18px;
+        }
+
+        /* --- FEATURED PRODUCTS --- */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 80px 0 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tag.new { background-color: var(--accent-green); color: #fff; }
+        .tag.sale { background-color: var(--text-sale); color: #fff; }
+
+        .product-img-holder {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .product-img-holder img {
+            max-height: 100%;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img-holder img {
+            transform: scale(1.05);
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .price-old {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
+        .price-sale {
+            color: var(--text-sale);
+        }
+
+        .product-card .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* --- BANNER SPLIT / PROMOTIONS --- */
+        .promo-banner {
+            background: linear-gradient(90deg, #111723 0%, #1d293f 100%);
+            border-radius: 8px;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .promo-content h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .promo-content p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .promo-img {
+            max-height: 180px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        /* --- CATEGORY BANNERS --- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .cat-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 220px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .cat-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .cat-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .cat-img {
+            max-height: 140px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+
+        /* --- NEWSLETTER --- */
+        .newsletter {
+            background-color: #070a10;
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .newsletter h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .newsletter p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--bg-card);
+            color: #fff;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent-green);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #04060a;
+            padding: 60px 0 30px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content h1 { font-size: 36px; }
+            .badges-grid { grid-template-columns: 1fr; gap: 15px; }
+            .promo-banner { flex-direction: column; text-align: center; gap: 30px; padding: 30px; }
+            .category-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .nav-links { display: none; } /* Simplicity for sample code */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-layer-group"></i> TechNest
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">Shop</a>
+                <a href="#">New Arrivals</a>
+                <a href="#">Best Sellers</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-user"></i>
+                <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Top Tech Gear<br>for Your Lifestyle</h1>
+                <p>Explore the latest gadgets & accessories engineered for optimal performance and daily convenience.</p>
+                <a href="#shop" class="btn">Shop Now</a>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80" alt="Premium Tech Gear" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="badges-section">
+        <div class="container badges-grid">
+            <div class="badge-item">
+                <i class="fa-solid fa-truck"></i> Free Shipping on Orders Over $50
+            </div>
+            <div class="badge-item">
+                <i class="fa-solid fa-rotate-left"></i> 30-Day Money Back Guarantee
+            </div>
+            <div class="badge-item">
+                <i class="fa-solid fa-headset"></i> 24/7 Customer Support
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="shop">
+        <h2 class="section-title">Featured Products</h2>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div>
+                    <span class="tag new">New</span>
+                    <div class="product-img-holder">
+                        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=300&q=80" alt="Wireless Earbuds">
+                    </div>
+                    <div class="product-info">
+                        <h3>Wireless Earbuds</h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price">$89.99</div>
+                    <button class="btn">Shop Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <div class="product-img-holder">
+                        <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=300&q=80" alt="Smartwatch Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Smartwatch Pro</h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price">$199.00</div>
+                    <button class="btn">Shop Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <div class="product-img-holder">
+                        <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=300&q=80" alt="Portable Bluetooth Speaker">
+                    </div>
+                    <div class="product-info">
+                        <h3>Portable Bluetooth Speaker</h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price">$129.00</div>
+                    <button class="btn">Shop Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <span class="tag sale">Sale</span>
+                    <div class="product-img-holder">
+                        <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=300&q=80" alt="Gaming Mouse">
+                    </div>
+                    <div class="product-info">
+                        <h3>Gaming Mouse</h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price price-sale">$49.99 <span class="price-old">$59.99</span></div>
+                    <button class="btn">Shop Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="promo-banner">
+            <div class="promo-content">
+                <h2>Boost Your Productivity</h2>
+                <p>Essential Accessories for Work & Play</p>
+                <a href="#" class="btn">Browse Now</a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=80" alt="Productivity setup" class="promo-img">
+        </div>
+
+        <div class="category-grid">
+            <div class="cat-card">
+                <div>
+                    <h3>New Arrivals</h3>
+                    <a href="#" class="btn">Shop New</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=250&q=80" alt="VR Headset" class="cat-img">
+            </div>
+            <div class="cat-card">
+                <div>
+                    <h3>Best Sellers</h3>
+                    <a href="#" class="btn">Shop Bestsellers</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=250&q=80" alt="Headphones" class="cat-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <h2>Join Our Newsletter</h2>
+            <p>Get the latest deals & updates delivered straight to your inbox.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Support Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 TechNest. All Rights Reserved. Powered by Shopify.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize ScrollReveal Configuration
+        const sr = ScrollReveal({
+            origin: 'bottom',
+            distance: '50px',
+            duration: 1000,
+            delay: 200,
+            reset: false // Animations trigger once while scrolling down
+        });
+
+        // Apply distinct staggered reveal sequences
+        sr.reveal('.hero-content', { origin: 'left', distance: '80px' });
+        sr.reveal('.hero-image-wrapper', { origin: 'right', distance: '80px', delay: 400 });
+        
+        sr.reveal('.badge-item', { interval: 150, distance: '20px', origin: 'bottom' });
+        
+        sr.reveal('.section-title', {});
+        sr.reveal('.product-card', { interval: 100, scale: 0.95 });
+        
+        sr.reveal('.promo-banner', { origin: 'bottom', distance: '60px' });
+        sr.reveal('.cat-card', { interval: 200, origin: 'bottom' });
+        
+        sr.reveal('.newsletter .container', { scale: 0.9 });
+    </script>
+</body>
+</html>
